@@ -1,0 +1,82 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://registry.npmmirror.com/vue/3.3.11/files/dist/vue.global.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap');
+        body {
+            background-color: #000;
+            background-image: url('https://placehold.co/800x800/000000/000000'); /* Placeholder for the grid background */
+            background-size: cover;
+            background-position: center;
+            font-family: 'Signika Negative', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex items-center justify-center min-h-screen" id="app">
+        <div class="text-center text-white">
+            <img alt="BullX logo" class="mx-auto mb-4" height="100" src="https://i.ibb.co/6bN03pp/IMG-20241211-211549-488.jpg" width="100"/>
+            <h1 class="text-4xl font-bold mb-2"><span class="text-green-500">x</span><span class="text-white">Genis</span></h1>
+            <p class="text-green-500 mb-1">EARLY ACCESS</p>
+            <p class="text-gray-400 mb-1">Connect your telegram to start mining instantly.</p>
+            <button @click="showModal = true" :disabled="isConnected" class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-md flex items-center justify-center mx-auto mt-4">
+                <i class="fab fa-telegram-plane mr-2"></i>
+                {{ isConnected ? 'Connected' : 'Connect Telegram' }}
+            </button>
+        </div>
+
+        <!-- Modal -->
+        <div v-if="showModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div class="bg-gray-800 rounded-lg p-6 w-80">
+                <div class="text-center">
+                    <div class="emoji">💬</div>
+                    <div class="text-2xl font-bold text-white mt-2">Confirm Details</div>
+                    <div class="mt-4">
+                        <div class="flex justify-between text-gray-400">
+                            <span>User Name</span>
+                            <span class="text-green-500" id="userName">{{ userName }}</span>
+                        </div>
+                        <div class="flex justify-between text-gray-400 mt-2">
+                            <span>User ID</span>
+                            <span id="userId">{{ userId }}</span>
+                        </div>
+                    </div>
+                    <button @click="confirmDetails" class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-md mt-4 w-full">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        createApp({
+            data() {
+                return {
+                    showModal: false,
+                    isConnected: false,
+                    userName: '{none}',
+                    userId: '{none}'
+                };
+            },
+            methods: {
+                confirmDetails() {
+                    this.isConnected = true;
+                    this.showModal = false;
+                }
+            },
+            mounted() {
+                // Simulate fetching user data from Telegram Web App
+                if (window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initDataUnsafe.user) {
+                    const user = window.Telegram.WebApp.initDataUnsafe.user;
+                    this.userName = `${user.first_name} ${user.last_name}`;
+                    this.userId = user.id;
+                }
+            }
+        }).mount('#app');
+    </script>
+</body>
+</html>
