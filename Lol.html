@@ -1,0 +1,42 @@
+<html>
+ <head>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <script src="https://registry.npmmirror.com/vue/3.3.11/files/dist/vue.global.js">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap');
+   body {
+      background-color: #000;
+      background-image: url('https://placehold.co/800x800/000000/000000'); /* Placeholder for the grid background */
+      background-size: cover;
+      background-position: center;
+      font-family: 'Signika Negative', sans-serif;
+    }
+  </style>
+ </head>
+ <body>
+  <div class="flex items-center justify-center min-h-screen" id="app">
+   <div class="text-center text-white">
+    <img alt="BullX logo" class="mx-auto mb-4" height="100" src="https://storage.googleapis.com/a1aa/image/aPYT2exoPoTKBCfnjFgTgel0y2K7J7N5EfhrTJNQZcnNJZ7PB.jpg" width="100"/>
+    <h1 class="text-4xl font-bold mb-2"><span class="text-green-500">x</span><span class="text-white">Genis</span></h1>
+    <p class="text-green-500 mb-1">
+     EARLY ACCESS
+    </p>
+    <p class="text-gray-400 mb-1">
+     Connect your telegram to start mining instantly
+    </p>
+    <button class="bg-green-700 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-md flex items-center justify-center mx-auto mt-4">
+     <i class="fab fa-telegram-plane mr-2">
+     </i>
+     Connect Telegram
+    </button>
+   </div>
+  </div>
+  <script>
+   const { createApp } = Vue
+    createApp({}).mount('#app')
+  </script>
+ </body>
+</html>
